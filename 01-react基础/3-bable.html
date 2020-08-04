@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<!--引入babel.js-->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script>
+  let es6 = `
+        let {name,version} = {
+        name: 'react',
+        version: '16.6.0'
+    }`;
+  //Babel对象里面有个transformd的方法，传入参数es6字符串，有个预设[es]
+  const es5 = Babel.transform(es6,{presets:['es2015']}).code;
+  console.log( es5 );
+
+</script>
+</body>
+</html>

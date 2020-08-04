@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root"></div>
+<script>
+    //通过React.createElement创建出来
+	const e = React.createElement;
+
+	// <div><p>这是一个p元素</p></div>
+	// 不利用维护 没有可读性
+
+    /*
+    * 参数一：创建元素标签
+    * 参数二：元素自定义属性，class，id..
+    * 参数三：值（元素节点/文本节点）,这里显然是一个元素节点 没有属性就是null，内容（字符串）
+    *       通过React.createElement创建出来一个p标签
+    *
+    * */
+	const ele = e('div',{className: 'box'},e('p'),null,'这是一个p元素');
+
+	console.log(ele);
+
+	ReactDOM.render(ele,document.querySelector('#root'));
+</script>
+</body>
+</html>

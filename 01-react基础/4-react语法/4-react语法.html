@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>react语法</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        li {
+            border: 1px solid pink;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div id="root"></div>
+
+    <script src="node_modules/babel-standalone/babel.js"></script>
+    <script src="node_modules/react/umd/react.development.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+
+    <script type="text/babel">
+        // 只需要 写 html语法结构 jsx  js+xml 语法 更严格 必须成对出现 意味着有结束符 html
+        // babeljs 解析 浏览认识的 元素对象
+        // 只有一个根节点
+        const state = {
+            msg: 'hi react',
+            info: '正儿八经的js代码 但要有返回值',
+            arr: ['a', 'b', 'c'],
+            list: [
+                {
+                    title: '声明式',
+                    content: 'React 使创建交互式 UI 变得轻而易举。为你应用的每一个状态设计简洁的视图，当数据改变时 React 能有效地更新并正确地渲染组件。\n' +
+                        '\n' +
+                        '以声明式编写 UI，可以让你的代码更加可靠，且方便调试。'
+                },
+                {
+                    title: '组件化',
+                    content: '创建拥有各自状态的组件，再由这些组件构成更加复杂的 UI。\n' +
+                        '\n' +
+                        '组件逻辑使用 JavaScript 编写而非模版，因此你可以轻松地在应用中传递数据，并使得状态与 DOM 分离。'
+                },
+                {
+                    title: '一次学习，随处编写',
+                    content: '无论你现在正在使用什么技术栈，你都可以随时引入 React 来开发新特性，而不需要重写现有代码。\n' +
+                        '\n' +
+                        'React 还可以使用 Node 进行服务器渲染，或使用 React Native 开发原生移动应用。'
+                }
+            ]
+        };
+
+        const createStyle = {
+            color: 'pink',
+             backgroundColor: '#690',
+        };
+
+        function createStateList() {
+            return state.list.map((item, index) => {
+                return <li key={index}>
+                    <b>{item.title}</b>
+                    <p>{item.content}</p>
+                </li>
+            })
+        };
+
+        const ele1 = (
+            <div className="box" data-abc="自定义属性" title="这是box元素" style={createStyle}>
+                {
+                    /*
+                        多行注释
+                    */
+                }
+                {
+                    // 单行注释
+                }
+                <h1> hello react {state.msg}</h1>
+                <img src='static/timg.jpg' width="200" height="100"/>
+                <br />
+                {state.info}
+                <br />
+                {state.arr}
+                <br />
+                {/*插入数据  渲染动态数据*/}
+
+                {
+                    Object.keys(state)
+                }
+                <br />
+                {
+                    //Object.values(state)
+                }
+                <br />
+                <div>
+                    <ul>
+                        {
+                            // 根据数据生成 用户界面
+                            // 逻辑代码
+                            // 不建议 把过多的逻辑 放在jsx结构里面
+                            state.list.map((item, index) => {
+                                return <li key={index}>
+                                    <b>{item.title}</b>
+                                    <p>{item.content}</p>
+                                </li>
+                            })
+                        }
+                    </ul>
+                </div>
+
+                <hr />
+                <div>
+                    <ul>
+                        {createStateList()}
+                    </ul>
+                </div>
+            </div>
+        )
+        // 插值符号
+        // `${}`
+        function createJsx() {
+            return (
+                <div className="box">
+                    <h1> hello react </h1>
+                </div>
+            )
+        };
+
+        const ele2 = createJsx();
+        ReactDOM.render(ele1, document.querySelector('#root'));
+    </script>
+</body>
+
+</html>

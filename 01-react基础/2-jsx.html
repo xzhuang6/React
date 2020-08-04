@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 引入babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="root"></div>
+
+<!--需要声明text/babel类型，否贼无法识别会报错-->
+<script type="text/babel">
+	const e = React.createElement;
+	console.log(e);
+
+	// <div><p>这是一个p元素</p></div>
+	// 不利用维护 没有可读性
+	const ele = (
+		<div className = "box">
+          <p>这是一个p元素</p>
+		</div>
+	);
+	console.log(ele);
+
+	ReactDOM.render(ele, document.querySelector('#root'));
+</script>
+
+</body>
+</html>
