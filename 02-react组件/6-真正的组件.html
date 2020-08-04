@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+
+    <script type="text/babel">
+        const state = {
+            name: "hello react component"
+        }
+
+        class CreateHeader extends React.Component {
+            //不写构造函数 默认会创建构造函数并自执行
+            constructor(props) {
+                //写constructor，必定手动调用 父类构造函数
+                super(props);
+
+                //即使不添加state，默认会创建state
+                // state = {
+                //     info: '这是组件状态'
+                // }
+
+                console.log(this.props);
+                console.log(...arguments);
+                //写构造函数目的 就像this上添加东东
+                this.xyz = '默认添加东西'
+            }
+
+
+
+
+            //官方属性 state
+            //状态 === '数据' 数据 生成 视图（用户界面）
+            /* state = {
+                 info: '这是组件状态'
+            } */
+
+            //自定义属性
+            abc = 123
+
+            //生命周期函数
+            render() {
+                //被父类创建出来 子类继承过来的
+                console.log(this);
+                const { pika, msg } = this.props;
+                return (
+                    <div>
+                        <h1>头部组件</h1>
+                        <p>{this.abc}</p>
+                        {pika} -- {msg}
+                        <br />
+                        {
+                            //this.state.info
+                        }
+                    </div>
+                )
+
+            }
+        }
+
+        ReactDOM.render(<CreateHeader pika='皮卡' msg={state.name} />, document.querySelector("#root"));
+    </script>
+</body>
+
+</html>

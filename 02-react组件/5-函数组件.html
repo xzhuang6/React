@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+
+    <script type="text/babel">
+        const state = {
+            name: "hello react component"
+        }
+
+        //组件用法 xml标签 首写字母必须大写 大驼峰命名
+        const ele = (
+            <div>
+                <h1>普通组件</h1>
+            </div>
+        )
+
+        //函数组件
+        function CreateHeader(props) {
+            console.log(props);
+            return (
+                <div>
+                    <h1>头部组件</h1>
+                    <b>{props.pika}</b>
+                    <p>{props.msg}</p>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<CreateHeader pika='皮卡' msg={state.name} />, document.querySelector("#root"));
+    </script>
+</body>
+
+</html>

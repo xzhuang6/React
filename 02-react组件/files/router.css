@@ -1,0 +1,43 @@
+#main{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+#main  .side{
+    width: 240px;
+    height: 100vh;
+    background: rgb(45, 45, 54);
+    overflow: hidden;
+    border: 1px solid blue;
+}
+
+#main  .con{
+    -ms-flex: 1 1;
+    flex: 1 1;
+    height: 100vh;
+    overflow: hidden;
+}
+#main  .con .navright{
+    min-height: calc( 100vh - 60px );
+    background-color: rgba(0,0,0,0.8);
+    /*display: flex;*/
+}
+#main  .con .navright > *{
+    /*flex: 1;*/
+    background-color: rgba(0,0,0,0.8);
+}
+
+.logoImg{
+    background-color: #37485d;
+    height: 60px;
+}
+.logoImg img{
+    display: block;
+}
+
+
+
+

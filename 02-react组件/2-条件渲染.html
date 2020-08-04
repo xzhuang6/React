@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+
+    <script type="text/babel">
+       	const person = {
+		name: 'pika',
+        age: 18,
+        sex: 1,
+    };
+
+    function filterSex(sex) {
+        if (sex) return <i>男</i>
+		return <i>女</i>
+    }
+
+    const ele = (
+    	<div>
+            昵称：{person.name}
+            <br />
+             年龄: {person.age}
+            <br />
+            性别: {person.sex? '男': '女'}
+            <br />
+            性别: {person.sex ? <b>男</b>: <u>女</u>}
+            <br />
+            <hr />
+            性别: {(person.sex && <i>男</i>) || (<b>女</b>) }
+            <hr />
+            <hr />
+
+            <h1>
+	            性别: {filterSex(person.sex)}
+            </h1>
+        </div>
+    );
+
+    ReactDOM.render(ele,document.querySelector('#root'));
+
+    </script>
+</body>
+</html>

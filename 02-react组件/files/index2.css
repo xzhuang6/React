@@ -1,0 +1,96 @@
+@charset "utf8";
+#banner {
+  position: relative;
+}
+.bann-cont ul {
+  width: 600%;
+}
+.bann-cont ul li {
+  float: left;
+}
+#banner .tab {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  font-size: 0;
+  text-align: center;
+}
+#banner .tab span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 3px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: width .5s;
+}
+#banner .tab span.current {
+  width: 24px;
+  border-color: #61b3e6;
+  background-color: #61b3e6;
+}
+#banner .btn span {
+  position: absolute;
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  margin-top: -26px;
+  background-image: url(./layout/image/next_prev.png);
+  background-repeat: no-repeat;
+  background-color: #61b3e6;
+  cursor: pointer;
+}
+#banner .btn span i {
+  display: inline-block;
+  position: absolute;
+  bottom: -7px;
+  width: inherit;
+  height: 7px;
+  background-image: url(./layout/image/next_prev_bg.png);
+  background-repeat: no-repeat;
+}
+#banner .btn span:nth-child(1) {
+  background-position: -56px 0;
+}
+#banner .btn span:nth-child(2) i {
+  background-position: -56px 0;
+}
+#banner .btn span:nth-child(1):hover {
+  background-position: -56px -56px;
+}
+#banner .btn span:nth-child(2):hover {
+  background-position: 0 -56px;
+}
+@media screen and (min-width: 1200px) {
+  .bann-cont {
+    position: relative;
+    width: 1200px;
+    height: 360px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  #banner .btn span.prev {
+    left: 0;
+  }
+  #banner .btn span.next {
+    right: 0;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .bann-cont {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 240px;
+    max-height: 700px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  .bann-cont img {
+    width: 100%;
+  }
+  #banner .btn {
+    display: none;
+  }
+}

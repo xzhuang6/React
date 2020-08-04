@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react渲染博客页面</title>
+    <link rel="shortcut icon" href="http://vue.h5sm.com:6060/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./files/global.css" />
+    <link rel="stylesheet" href="./files/index.css" />
+    <link rel="stylesheet" href="./files/index1.css" />
+    <link rel="stylesheet" href="./files/index3.css" />
+    <link rel="stylesheet" href="./files/index2.css" />
+    <script src="./files/jquery.js"></script>
+    <script src="./files/list.js"></script>
+
+    <script src="./files/animation.js"></script>
+    <script src="./files/index.js"></script>
+    <script src="./files/global.js"></script>
+    <script src="./files/adaptor.js"></script>
+    <script src="./files/index1.js"></script>
+    <script src="./files/index2.js"></script>
+    <script src="./files/jquery.qrcode.min.js"></script>
+    <script src="./files/backTop.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="./node_modules/babel-standalone/babel.js"></script>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+
+    <script type="text/babel">
+        const state = {
+            welcome: "欢迎来到 追梦 博客",
+            banner: [
+                {
+                    id: 1,
+                    pic: "files/banner-1.jpg",
+                    width: 1200,
+                    height: 360
+                },
+                {
+                    id: 2,
+                    pic: "files/banner-2.jpg",
+                    width: 1200,
+                    height: 360
+                },
+                {
+                    id: 3,
+                    pic: "files/banner-3.jpg",
+                    width: 1200,
+                    height: 360
+                },
+                {
+                    id: 4,
+                    pic: "files/banner-4.jpg",
+                    width: 1200,
+                    height: 360
+                },
+                {
+                    id: 5,
+                    pic: "files/banner-5.jpg",
+                    width: 1200,
+                    height: 360
+                },
+                {
+                    id: 6,
+                    pic: "files/banner-6.jpg",
+                    width: 1200,
+                    height: 360
+                }
+            ],
+            list: [
+                {
+                    id: 1,
+                    pic: "files/2019090702.jpg",
+                    tag: "web前端",
+                    title: "nodejs之邮件模块nodemailer",
+                    des: "前言:nodemailer是node的一个发送邮件的组件，其功能相当强大，普通邮件，传送附件，邮件加密等等都能实现，而且操作也十分方便。nodemailer在GitHub上的项目地址为https://github.com/andris9/Nodemailer.本人以qq邮箱为例介绍nodemailer.",
+                    date: "2019年09月14日",
+                    watch: "4",
+                    comment: 30,
+                    like: 20
+                },
+                {
+                    id: 2,
+                    pic: "files/2019090703.jpg",
+                    tag: "web前端",
+                    title: "纯JavaScript实现分页功能",
+                    des: "徜徉在代码的海洋里,分页是不可避免要接触到的,大多数时候,都是直接引用第三方插件来实现分页,但同时,第三方的分页插件又各有优缺点。而且并不是一定能完美实现我们想要的效果。下面就来看看博主手写的分页吧。希望能给你以启发。（本例演示）",
+                    date: "2019年09月12日",
+                    watch: "5",
+                    comment: 10,
+                    like: 30
+                },
+                {
+                    id: 3,
+                    pic: "files/2019091002.png",
+                    tag: "闲言碎语",
+                    title: "献给老师的祝福",
+                    des: "玩乐时，你迫不及待长出一对羽翼，呵护着我们；课堂上，你咀嚼着只言片语，将我们哺育；灯光下，俗尘的喧闹，对比着你耕耘的静谧。教师节道声谢谢您！ 听，您的嗓子逐渐的沙哑；看，您的额头又深了皱纹；瞧，您的发间新添了白发；想，您的心中充满了希望。今",
+                    date: "2019年09月10日",
+                    watch: "5",
+                    comment: 5,
+                    like: 6
+                },
+                {
+                    id: 4,
+                    pic: "files/2019091001.gif",
+                    tag: "Canvas",
+                    title: "动感音频图",
+                    des: "本demo实现的是音频的可视化动态,下面就让我们来看看具体实现的部分过程。（本例演示）",
+                    date: "2019年09月10日",
+                    watch: "7",
+                    comment: 32,
+                    like: 36
+                },
+                {
+                    id: 5,
+                    pic: "files/2019090705.jpg",
+                    tag: "闲言碎语",
+                    title: "当悲伤逆流成河",
+                    des: "引言：眼泪的存在，只是为了证明悲伤不是一场幻觉。当悲伤逆流成河，我鼓不起勇气来停下眼泪，只能让它肆意流淌。世界并不完美，我们有必要学会忍受孤单。很多时候，我们太需要找个人来安慰，才不至于让悲伤逆流成河。我喜欢说话，但我不喜欢没完没了的说话；",
+                    date: "2019年09月07日",
+                    watch: "17",
+                    comment: 53,
+                    like: 16
+                },
+                {
+                    id: 6,
+                    pic: "files/2019090704.jpg",
+                    tag: "闲言碎语",
+                    title: "执笔为你，写下天边的眷恋",
+                    des: "秋天的枫叶还未浸染，天空没有南飞的大雁，更替的是四季，变迁的是时间，不变的是思恋。缱绻陌路，看落花满地，你缓缓走来，百转千结的眷恋，抒写爱情诗篇，只为相依相伴。从没有一种情感让我这般感动，从没有一种爱让我觉得像现在这般珍惜。我想用尽三生",
+                    date: "2019年09月07日",
+                    watch: "10",
+                    comment: 14,
+                    like: 35
+                }
+            ],
+            hotNews: [
+                {
+                    id: 1,
+                    title: "教你如何搭建自己的个人博客",
+                    watch: 19
+                },
+                {
+                    id: 2,
+                    title: "为wordpress增加复制内容出现弹框功能",
+                    watch: 18
+                },
+                {
+                    id: 3,
+                    title: "WordPress禁用谷歌字体解决加载慢方法",
+                    watch: 17
+                },
+                {
+                    id: 4,
+                    title: "js计算两个日期的间隔天数",
+                    watch: 16
+                },
+                {
+                    id: 5,
+                    title: "经典小游戏~推箱子",
+                    watch: 15
+                },
+                {
+                    id: 6,
+                    title: "经典小游戏~飞机大战",
+                    watch: 14
+                },
+                {
+                    id: 7,
+                    title: "国际领先官网首页",
+                    watch: 13
+                },
+                {
+                    id: 8,
+                    title: "video官网首页",
+                    watch: 12
+                },
+                {
+                    id: 9,
+                    title: "天猫官网首页",
+                    watch: 11
+                },
+                {
+                    id: 10,
+                    title: "淘宝web首页",
+                    watch: 10
+                }
+            ],
+            hotRank: [
+                {
+                    id: 1,
+                    title: "3D空间轮换",
+                    watch: 9
+                },
+                {
+                    id: 2,
+                    title: "video官网首页",
+                    watch: 8
+                },
+                {
+                    id: 3,
+                    title: "教你如何搭建自己的个人博客",
+                    watch: 7
+                },
+                {
+                    id: 4,
+                    title: "为wordpress增加复制内容出现弹框功能",
+                    watch: 6
+                },
+                {
+                    id: 5,
+                    title: "WordPress禁用谷歌字体解决加载慢方法",
+                    watch: 5
+                },
+                {
+                    id: 6,
+                    title: "WordPress如何用css修改鼠标的样式？",
+                    watch: 4
+                },
+                {
+                    id: 7,
+                    title: "wordpress给评论添加@评论者效果",
+                    watch: 3
+                },
+                {
+                    id: 8,
+                    title: "【wordpress】非插件拦截垃圾评论方法",
+                    watch: 2
+                },
+                {
+                    id: 9,
+                    title: "谈谈wordpress网站固定链接URL如何设置好？",
+                    watch: 1
+                },
+                {
+                    id: 10,
+                    title: "分享两种wordpress网站下雪效果",
+                    watch: 0
+                }
+            ]
+        }
+
+        function createBanner() {
+            return (
+                <div id="banner">
+                    <div className="bann-cont">
+                        <ul>
+                            {
+                                state.banner.map((item, index) => {
+                                    return (
+                                        <li>
+                                            <a href="#">
+                                                <img src={item.pic} alt="经典小游戏~推箱子" width={item.width} height={item.height} />
+                                            </a>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                    <div className="tab">
+
+                    </div>
+                    <div className="btn">
+                        <span className="prev">
+                            <i></i>
+                        </span>
+                        <span className="next">
+                            <i></i>
+                        </span>
+                    </div>
+                </div>
+            )
+        }
+
+        function createBanner() {
+            return (
+                <div id="banner">
+                    <div className="bann-cont">
+                        <ul>
+                            {
+                                state.banner.map((item, index) => {
+                                    return (
+                                        <li>
+                                            <a href="#">
+                                                <img src={item.pic} alt="经典小游戏~推箱子" width={item.width} height={item.height} />
+                                            </a>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                    <div className="tab">
+
+                    </div>
+                    <div className="btn">
+                        <span className="prev">
+                            <i></i>
+                        </span>
+                        <span className="next">
+                            <i></i>
+                        </span>
+                    </div>
+                </div>
+            )
+        }
+
+        function createMainLeftList() {
+            return (
+                <div className="main-left">
+
+                    <div className="main-cont">
+                        {
+                            state.list.map((item, index) => {
+                                return (
+                                    <div className="text" key={index}>
+                                        <div className="img">
+                                            <a href="#">
+                                                <img
+                                                    src={item.pic}
+                                                    alt={item.title} width="440"
+                                                    height="300" />
+                                            </a>
+                                        </div>
+                                        <div className="info">
+                                            <h2><span>{item.tag}</span><a
+                                                href="#">{item.title}</a>
+                                            </h2>
+                                            <h3>
+                                                {item.des}
+                                            </h3>
+                                            <a className="read-more" href="#"
+                                                target="_blank">阅读全文<i
+                                                    className="veils-icon veils-icon-jinrujiantouxiao"></i></a>
+                                            <p>
+                                                <span><i
+                                                    className="veils-icon veils-icon-naozhong-copy"></i>{item.date}</span>
+                                                <span><i className="veils-icon veils-icon-liulan"></i>{item.watch}℃</span>
+                                                <span><i className="veils-icon veils-icon-yonghupinglun"></i>{item.comment}条评论</span>
+                                                <span className="like"><i
+                                                    className="veils-icon veils-icon-dianjixihuan"></i><span>{item.like}</span>喜欢</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
+
+                    <div className="scroll-load">
+                        <div className="load-main">
+                            <span className="load-bar"></span>
+                            <span className="load-bar"></span>
+                            <span className="load-bar"></span>
+                            <span className="load-bar"></span>
+                            <span className="load-bar"></span>
+                            <span className="load-bar"></span>
+                            <span className="load-bar"></span>
+                        </div>
+                        <p>数据加载中,请稍候...</p>
+                    </div>
+
+                </div>
+            )
+        }
+
+        function createHotNews() {
+            return (
+                <div className="column">
+                    <h3 className="column-title">
+                        <i className="veils-icon veils-icon-tijiao"></i>热门资讯
+		        </h3>
+                    <ul>
+                        {
+                            state.hotNews.map((item, index) => {
+                                return (
+                                    <li key={index}>
+                                        <em>{index +1}</em><a
+                                            href="http://vue.h5sm.com:6060/article/detail-512.html">{item.title}</a><span><i
+                                                className="veils-icon veils-icon-liulan"></i>{item.watch}</span>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+
+        function createHotRank() {
+            return (
+                <div className="column colHot">
+                    <h3 className="column-title">
+                        <i className="veils-icon veils-icon-redu"></i>热度排行
+		        </h3>
+                    <ul>
+                        {
+                            state.hotRank.map((item, index) => {
+                                return (
+                                    <li>
+                                        <em>{state.hotRank.length - index}</em><a
+                                            href="http://vue.h5sm.com:6060/article/detail-558.html">{item.title}</a><span><i
+                                                className="veils-icon veils-icon-dianjixihuan"></i>{item.watch}</span>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+
+        const ele = (
+            <div>
+                <div className="shield">别看啦!本宝宝还小,会害羞的啦!!!♥(ˆ◡ˆԅ)♥</div>
+                <div className="qrcode">
+                    <h4><span>分享到微信朋友圈</span><i>X</i></h4>
+                    <p>打开微信，点击底部的“发现”，<br />使用“扫一扫”即可将网页分享至朋友圈。</p>
+                </div>
+
+                <div className="back-up">
+                    <i className="veils-icon veils-icon-huojian"> </i>
+                </div>
+                <div className="loading show">
+                    <div className="load-main">
+                        <span className="load-bar"> </span>
+                        <span className="load-bar"> </span>
+                        <span className="load-bar"> </span>
+                        <span className="load-bar"> </span>
+                        <span className="load-bar"> </span>
+                        <span className="load-bar"> </span>
+                        <span className="load-bar"> </span>
+                    </div>
+                    <p>您访问的资源努力搬运中,请稍后...</p>
+                </div>
+
+                <div id="container">
+
+                    <div id="header">
+                        <div className="head-web">
+                            <div className="h-tips">
+                                <div className="container">
+                                    <div className="h-t-l">
+                                        <span className="h-left">{state.welcome}</span>
+                                        <span>
+                                            <a href="http://vue.h5sm.com:6060/login">
+                                                <i className="veils-icon veils-icon-denglu"></i>
+                            登录
+                        </a>
+                                            <a
+                                                href="http://vue.h5sm.com:6060/register"
+                                            >
+                                                <i className="veils-icon veils-icon-zhuce"></i>
+                            注册
+                        </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="nav">
+                                <div className="container">
+                                    <div className="h-n-logo">
+                                        <a href="http://vue.h5sm.com:6060/">
+                                            <img src="files/logo.png" alt="指尖轻纱-刹那芳华" />
+                                            <ul>
+                                                <li>指</li>
+                                                <li>尖</li>
+                                                <li>轻</li>
+                                                <li>纱</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div className="h-n-r">
+                                        <ul>
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/" className="active">
+                                                    <span>首页</span>
+                                                    <span>首页</span>
+                                                </a>
+                                                <p></p>
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/article/know/index-1.html">
+                                                    <span>前端知识</span>
+                                                    <span>前端知识</span>
+                                                </a>
+                                                <p></p>
+
+                                                <div className="h-n-menu">
+
+
+                                                    <p><a href="http://vue.h5sm.com:6060/article/web/index-1.html">web前端</a>
+                                                    </p>
+
+
+                                                    <p><a
+                                                        href="http://vue.h5sm.com:6060/article/theme/index-1.html">主题相关</a>
+                                                    </p>
+
+
+                                                    <p><a href="http://vue.h5sm.com:6060/article/seo/index-1.html">SEO优化</a>
+                                                    </p>
+
+
+                                                </div>
+
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/article/demo/index-1.html">
+                                                    <span>demo集锦</span>
+                                                    <span>demo集锦</span>
+                                                </a>
+                                                <p></p>
+
+                                                <div className="h-n-menu">
+
+
+                                                    <p><a href="http://vue.h5sm.com:6060/article/css/index-1.html">CSS</a>
+                                                    </p>
+
+
+                                                    <p>
+                                                        <a href="http://vue.h5sm.com:6060/article/java/index-1.html">JavaScript</a>
+                                                    </p>
+
+
+                                                    <p><a
+                                                        href="http://vue.h5sm.com:6060/article/canvas/index-1.html">Canvas</a>
+                                                    </p>
+
+
+                                                </div>
+
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/article/works/index-1.html">
+                                                    <span>作品赏析</span>
+                                                    <span>作品赏析</span>
+                                                </a>
+                                                <p></p>
+
+                                                <div className="h-n-menu">
+
+
+                                                    <p><a href="http://vue.h5sm.com:6060/article/game/index-1.html">游戏</a>
+                                                    </p>
+
+
+                                                    <p><a
+                                                        href="http://vue.h5sm.com:6060/article/website/index-1.html">网站</a>
+                                                    </p>
+
+
+                                                </div>
+
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/article/chat/index-1.html">
+                                                    <span>闲言碎语</span>
+                                                    <span>闲言碎语</span>
+                                                </a>
+                                                <p></p>
+
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/links.html">
+                                                    <span>友情链接</span>
+                                                    <span>友情链接</span>
+                                                </a>
+                                                <p></p>
+
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/guest.html">
+                                                    <span>留言簿</span>
+                                                    <span>留言簿</span>
+                                                </a>
+                                                <p></p>
+
+                                            </li>
+
+
+                                            <li>
+                                                <a href="http://vue.h5sm.com:6060/about.html">
+                                                    <span>关于我</span>
+                                                    <span>关于我</span>
+                                                </a>
+                                                <p></p>
+
+                                            </li>
+
+
+                                            <li className="piano">
+                                                <i></i>
+                                                <i></i>
+                                                <i></i>
+                                                <i></i>
+                                            </li>
+                                            <li className="search">
+                                                <i className="veils-icon veils-icon-sousuo"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="snow"></div>
+                        </div>
+                        <div className="head-ph">
+                            <div className="head active">
+                                <span>欢迎光临~指尖轻纱!</span>
+                                <span>
+                                    <a href="http://vue.h5sm.com:6060/login">
+                                        <i className="veils-icon veils-icon-denglu"></i>
+                    登录
+                </a>
+                                    <a href="http://vue.h5sm.com:6060/register">
+                                        <i className="veils-icon veils-icon-zhuce"></i>
+                    注册
+                </a>
+                                </span>
+                            </div>
+                            <div className="head-cont">
+                                <div className="head-menu">
+                                    <i className="veils-icon veils-icon-shensuoyou"></i>
+                                </div>
+                                <span>指尖轻纱-刹那芳华</span>
+                                <div className="head-search search">
+                                    <i className="veils-icon veils-icon-sousuo"></i>
+                                </div>
+                            </div>
+                            <div className="head-side-left head-side-btn">
+                                <a href="http://vue.h5sm.com:6060/" className="active"><img src="files/logo.png"
+                                    alt="指尖轻纱-刹那芳华" /></a>
+                                <ul>
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/" className="active">
+                                            首页
+								    </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/article/know/index-1.html">前端知识
+									    <i className="veils-icon veils-icon-down"></i></a>
+
+                                        <div className="head-side-slect">
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/web/index-1.html">web前端</a>
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/theme/index-1.html">主题相关</a>
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/seo/index-1.html">SEO优化</a>
+
+
+                                        </div>
+
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/article/demo/index-1.html">demo集锦<i
+                                            className="veils-icon veils-icon-down"></i></a>
+
+                                        <div className="head-side-slect">
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/css/index-1.html">CSS</a>
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/java/index-1.html">JavaScript</a>
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/canvas/index-1.html">Canvas</a>
+
+
+                                        </div>
+
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/article/works/index-1.html">作品赏析<i
+                                            className="veils-icon veils-icon-down"></i></a>
+
+                                        <div className="head-side-slect">
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/game/index-1.html">游戏</a>
+
+
+                                            <a href="http://vue.h5sm.com:6060/article/website/index-1.html">网站</a>
+
+
+                                        </div>
+
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/article/chat/index-1.html">闲言碎语</a>
+
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/links.html">友情链接</a>
+
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/guest.html">留言簿</a>
+
+                                    </li>
+
+
+                                    <li>
+                                        <a href="http://vue.h5sm.com:6060/about.html">关于我</a>
+
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="site-search">
+                            <form action="http://vue.h5sm.com:6060/search" method="get" role="search">
+                                <div className="site-box">
+                                    <input type="text" name="key" placeholder="请输入文章关键词查询" maxLength="30"
+                                        autoComplete="off" />
+                                    <button type="submit" className="veils-submit">
+                                        <i className="veils-icon veils-icon-sousuo"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="cover"></div>
+                    </div>
+
+                    <div className="fill"></div>
+
+                    {createBanner()}
+
+
+                    <div id="main">
+                        <div className="container content main-web">
+
+                            {createMainLeftList()}
+
+                            <div className="main-right">
+
+                                {createHotNews()}
+
+                                {createHotRank()}
+
+
+                                <div className="main-param"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="footer">
+                        <div className="foot-box">
+                            <p>COPYRIGHT 2019 指尖轻纱-刹那芳华. ALL RIGHTS RESERVED.</p>
+                            <p>冀ICP备18030721号-1</p>
+                            <p>本站只提供WEB服务,如有侵犯您的权益,请发送邮件至博主邮箱，我们会及时处理</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        )
+
+
+        ReactDOM.render(ele, document.querySelector('#root'))
+    </script>
+</body>
+
+</html>

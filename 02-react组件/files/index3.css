@@ -1,0 +1,29 @@
+@charset "utf8";
+#footer {
+  position: relative;
+  margin-top: 0.26666667rem;
+  background-color: #000;
+}
+.foot-box {
+  padding: 0.2rem 0;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+.foot-box p {
+  padding: 8px 0;
+}
+@media screen and (min-width: 1200px) {
+  .foot-box {
+    width: 1200px;
+    max-width: 1200px;
+  }
+}
+@media screen and (max-width: 1199px) {
+  #footer {
+    transition: transform .5s;
+  }
+  .foot-box {
+    width: 100%;
+  }
+}
